@@ -27,19 +27,13 @@ public class Reserva {
             dataCheckout = IO.readln("Check-out date (dd/MM/yyyy): ");
             checkOut = LocalDate.parse(dataCheckout, formato);
 
-            LocalDate now = LocalDate.now();
-            if(checkIn.isBefore(now) || checkOut.isBefore(now)){
-                IO.println("Error in reservation: Reservation dater for update must be future dates");
-            }
-
-            else if(!checkOut.isAfter(checkIn)){
-                IO.println("Error in reservation: Check-out date must be after chek-in date");
-            }
-
-            else{
-                reservation.updateDates(checkIn, checkOut);
+            String error = reservation.updateDates(checkIn, checkOut);
+            if(error != null){
+                IO.println("Error in reservation: %s".formatted(error));
+            }else{
                 IO.println("Reservation: " + reservation);
             }
+
         }//else
     }//main
 }//reserva
