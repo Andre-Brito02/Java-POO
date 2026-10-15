@@ -1,6 +1,7 @@
 package application;
 
 import model.entities.Reservation;
+import model.exceptions.DomainException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,15 +10,13 @@ public class Reserva {
     static void main() {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        int roomNumber = Integer.parseInt(IO.readln("Room number: "));
-        String dataCheckin = IO.readln("Check-in date (dd/MM/yyyy): ");
-        LocalDate checkIn = LocalDate.parse(dataCheckin, formato);
-        String dataCheckout = IO.readln("Check-out date (dd/MM/yyyy): ");
-        LocalDate checkOut = LocalDate.parse(dataCheckout, formato);
+        try{
+            int roomNumber = Integer.parseInt(IO.readln("Room number: "));
+            String dataCheckin = IO.readln("Check-in date (dd/MM/yyyy): ");
+            LocalDate checkIn = LocalDate.parse(dataCheckin, formato);
+            String dataCheckout = IO.readln("Check-out date (dd/MM/yyyy): ");
+            LocalDate checkOut = LocalDate.parse(dataCheckout, formato);
 
-        if(!checkOut.isAfter(checkIn)){
-            IO.println("Error in reservation: Check-out date must be after chek-in date");
-        }else{
             Reservation reservation = new Reservation(roomNumber, checkIn, checkOut);
             IO.println("Reservation: " + reservation);
 
@@ -27,13 +26,15 @@ public class Reserva {
             dataCheckout = IO.readln("Check-out date (dd/MM/yyyy): ");
             checkOut = LocalDate.parse(dataCheckout, formato);
 
-            String error = reservation.updateDates(checkIn, checkOut);
-            if(error != null){
-                IO.println("Error in reservation: %s".formatted(error));
-            }else{
-                IO.println("Reservation: " + reservation);
-            }
+            reservation.updateDates(checkIn, checkOut);
+            IO.println("Reservation: " + reservation);
+        }
+        catch (DomainException e){
+            IO.println("Error in resevation: " + e.getMessage());
+        }
+        catch (RuntimeException e){
+            IO.println("Unexpected Error");
+        }
 
-        }//else
     }//main
 }//reserva
