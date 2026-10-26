@@ -4,7 +4,7 @@ Cada pasta contém a resolução de um exercício, proposto pelo professor Néli
 
 A ideia desse repositório é documentar a minha evolução da linguagem Java, principalmente na área da programação orientada ao objeto.
 
-Atualmente estou vendo sobre Herança, sobreposição e uma breve introdução sobre polimorfismo.
+Finalizado, no dia 25/10/2026, a parte de introdução À linguagem java e programação orientada ao objeto.
 
 # Conteúdo visto:
 - Classes
@@ -20,3 +20,10 @@ Atualmente estou vendo sobre Herança, sobreposição e uma breve introdução s
 - Herança
 - Sobreposição
 - LocalDate, LocalDateTime, DateTimeFormatter, Instant
+- Leitura de arquivos
+- Polimorfismo
+- Programação funcional
+- Expressões lambda
+- Tratamento de exceções
+- Interfaces
+- Generics, Set e Map
